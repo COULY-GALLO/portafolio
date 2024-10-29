@@ -9,10 +9,36 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://ukc3pikk3fkkzvyi:E4W9DX4ZzG1t5N
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
+
+
+
+
 @app.route('/')
 def home():
     
         return render_template('home.html')
+
+
+
+@app.route('/perfil')
+def perfil():
+    
+        return render_template('perfil.html')
+
+@app.route('/log_in')
+def log_in():
+    
+        return render_template('log_in.html')
+
+
+
+
+
+
+
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=3500)

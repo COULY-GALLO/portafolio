@@ -1,10 +1,17 @@
-{% extends "./base.html" %}
+{% extends "base.html" %}
 
-<title>{% block title %}portafolio{% endblock %}</title>
+{% block title %}Portafolio{% endblock %}
 
 {% block body %}
+    <!-- Sección parallax -->
+    <div class="parallax"></div>
 
-<h1>Bienvenidos a mi portafolio</h1>
-<p>aqui encontraran mi resumen</p>
+    <!-- Contenido del portafolio -->
+    <div class="content">
+        <h1>Bienvenidos a mi portafolio</h1>
+        <p>Insertar texto de bienvenida aquí</p>
+    </div>
 
+    <!-- Otra sección parallax si deseas repetir el efecto -->
+    <div class="parallax"></div>
 {% endblock %}

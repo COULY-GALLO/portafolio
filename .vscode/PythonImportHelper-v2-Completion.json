@@ -1,0 +1,138 @@
+[
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "url_for",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "flash",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "session",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "SQLAlchemy",
+        "importPath": "flask_sqlalchemy",
+        "description": "flask_sqlalchemy",
+        "isExtraImport": true,
+        "detail": "flask_sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "home",
+        "kind": 2,
+        "importPath": "back",
+        "description": "back",
+        "peekOfCode": "def home():\n        return render_template('home.html')\n@app.route('/perfil')\ndef perfil():\n        return render_template('perfil.html')\n@app.route('/log_in')\ndef log_in():\n        return render_template('log_in.html')",
+        "detail": "back",
+        "documentation": {}
+    },
+    {
+        "label": "perfil",
+        "kind": 2,
+        "importPath": "back",
+        "description": "back",
+        "peekOfCode": "def perfil():\n        return render_template('perfil.html')\n@app.route('/log_in')\ndef log_in():\n        return render_template('log_in.html')\nif __name__ == '__main__':",
+        "detail": "back",
+        "documentation": {}
+    },
+    {
+        "label": "log_in",
+        "kind": 2,
+        "importPath": "back",
+        "description": "back",
+        "peekOfCode": "def log_in():\n        return render_template('log_in.html')\nif __name__ == '__main__':\n    app.run(debug=True, port=3500)",
+        "detail": "back",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "back",
+        "description": "back",
+        "peekOfCode": "app = Flask(__name__)\napp.secret_key = 'patri'\napp.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://ukc3pikk3fkkzvyi:E4W9DX4ZzG1t5NtFUIs7@beey6ofiqbnpaclvmjhy-mysql.services.clever-cloud.com:3306/beey6ofiqbnpaclvmjhy'\napp.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False\ndb = SQLAlchemy(app)\n@app.route('/')\ndef home():\n        return render_template('home.html')\n@app.route('/perfil')",
+        "detail": "back",
+        "documentation": {}
+    },
+    {
+        "label": "app.secret_key",
+        "kind": 5,
+        "importPath": "back",
+        "description": "back",
+        "peekOfCode": "app.secret_key = 'patri'\napp.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://ukc3pikk3fkkzvyi:E4W9DX4ZzG1t5NtFUIs7@beey6ofiqbnpaclvmjhy-mysql.services.clever-cloud.com:3306/beey6ofiqbnpaclvmjhy'\napp.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False\ndb = SQLAlchemy(app)\n@app.route('/')\ndef home():\n        return render_template('home.html')\n@app.route('/perfil')\ndef perfil():",
+        "detail": "back",
+        "documentation": {}
+    },
+    {
+        "label": "app.config['SQLALCHEMY_DATABASE_URI']",
+        "kind": 5,
+        "importPath": "back",
+        "description": "back",
+        "peekOfCode": "app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://ukc3pikk3fkkzvyi:E4W9DX4ZzG1t5NtFUIs7@beey6ofiqbnpaclvmjhy-mysql.services.clever-cloud.com:3306/beey6ofiqbnpaclvmjhy'\napp.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False\ndb = SQLAlchemy(app)\n@app.route('/')\ndef home():\n        return render_template('home.html')\n@app.route('/perfil')\ndef perfil():\n        return render_template('perfil.html')",
+        "detail": "back",
+        "documentation": {}
+    },
+    {
+        "label": "app.config['SQLALCHEMY_TRACK_MODIFICATIONS']",
+        "kind": 5,
+        "importPath": "back",
+        "description": "back",
+        "peekOfCode": "app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False\ndb = SQLAlchemy(app)\n@app.route('/')\ndef home():\n        return render_template('home.html')\n@app.route('/perfil')\ndef perfil():\n        return render_template('perfil.html')\n@app.route('/log_in')",
+        "detail": "back",
+        "documentation": {}
+    },
+    {
+        "label": "db",
+        "kind": 5,
+        "importPath": "back",
+        "description": "back",
+        "peekOfCode": "db = SQLAlchemy(app)\n@app.route('/')\ndef home():\n        return render_template('home.html')\n@app.route('/perfil')\ndef perfil():\n        return render_template('perfil.html')\n@app.route('/log_in')\ndef log_in():",
+        "detail": "back",
+        "documentation": {}
+    }
+]
