@@ -1,4 +1,4 @@
-import plotly.graph_objects as go
+
 from dotenv import load_dotenv
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_sqlalchemy import SQLAlchemy
@@ -19,20 +19,10 @@ contraseña = os.getenv("contraseña")
 
 @app.route('/')
 def home():
-        
- language_data = {
-        'labels': ['Python', 'JavaScript', 'HTML', 'CSS', 'Otros'],
-        'percentages': [40, 30, 15, 10, 5]  # Cambia estos valores según tus necesidades
-    }
+  
     
-   
- fig = go.Figure(data=[go.Pie(labels=language_data['labels'], values=language_data['percentages'], hole=0.3)])
-    
-    # Convertir el gráfico a HTML
- graph_html = fig.to_html(full_html=False)
 
-    
- return render_template('home.html', graph_html=graph_html)
+ return render_template('home.html')
     
 
 
