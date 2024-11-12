@@ -1,5 +1,22 @@
 [
     {
+        "label": "plotly.graph_objects",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "plotly.graph_objects",
+        "description": "plotly.graph_objects",
+        "detail": "plotly.graph_objects",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
         "label": "Flask",
         "importPath": "flask",
         "description": "flask",
@@ -64,11 +81,20 @@
         "documentation": {}
     },
     {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
         "label": "home",
         "kind": 2,
         "importPath": "back",
         "description": "back",
-        "peekOfCode": "def home():\n        return render_template('home.html')\n@app.route('/perfil')\ndef perfil():\n        return render_template('perfil.html')\n@app.route('/log_in')\ndef log_in():\n        return render_template('log_in.html')",
+        "peekOfCode": "def home():\n language_data = {\n        'labels': ['Python', 'JavaScript', 'HTML', 'CSS', 'Otros'],\n        'percentages': [40, 30, 15, 10, 5]  # Cambia estos valores según tus necesidades\n    }\n fig = go.Figure(data=[go.Pie(labels=language_data['labels'], values=language_data['percentages'], hole=0.3)])\n    # Convertir el gráfico a HTML\n graph_html = fig.to_html(full_html=False)\n return render_template('home.html', graph_html=graph_html)\n@app.route('/perfil')",
         "detail": "back",
         "documentation": {}
     },
@@ -77,7 +103,7 @@
         "kind": 2,
         "importPath": "back",
         "description": "back",
-        "peekOfCode": "def perfil():\n        return render_template('perfil.html')\n@app.route('/log_in')\ndef log_in():\n        return render_template('log_in.html')\nif __name__ == '__main__':",
+        "peekOfCode": "def perfil():\n        return render_template('perfil.html')\n@app.route('/log_in')\ndef log_in():\n     if request.method == 'POST':\n        username = request.form['username']\n        password = request.form['password']\n        USERNAME=usuario\n        PASSWORD=contraseña\n        if username == USERNAME and password == PASSWORD:",
         "detail": "back",
         "documentation": {}
     },
@@ -86,7 +112,7 @@
         "kind": 2,
         "importPath": "back",
         "description": "back",
-        "peekOfCode": "def log_in():\n        return render_template('log_in.html')\nif __name__ == '__main__':\n    app.run(debug=True, port=3500)",
+        "peekOfCode": "def log_in():\n     if request.method == 'POST':\n        username = request.form['username']\n        password = request.form['password']\n        USERNAME=usuario\n        PASSWORD=contraseña\n        if username == USERNAME and password == PASSWORD:\n            session['username'] = username  \n            flash('Inicio de sesión')\n            return redirect(url_for(''))",
         "detail": "back",
         "documentation": {}
     },
@@ -95,7 +121,7 @@
         "kind": 5,
         "importPath": "back",
         "description": "back",
-        "peekOfCode": "app = Flask(__name__)\napp.secret_key = 'patri'\napp.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://ukc3pikk3fkkzvyi:E4W9DX4ZzG1t5NtFUIs7@beey6ofiqbnpaclvmjhy-mysql.services.clever-cloud.com:3306/beey6ofiqbnpaclvmjhy'\napp.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False\ndb = SQLAlchemy(app)\n@app.route('/')\ndef home():\n        return render_template('home.html')\n@app.route('/perfil')",
+        "peekOfCode": "app = Flask(__name__)\napp.secret_key = 'patri'\napp.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://ukc3pikk3fkkzvyi:E4W9DX4ZzG1t5NtFUIs7@beey6ofiqbnpaclvmjhy-mysql.services.clever-cloud.com:3306/beey6ofiqbnpaclvmjhy'\napp.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False\ndb = SQLAlchemy(app)\nload_dotenv()\nusuario = os.getenv(\"usuario\")\ncontraseña = os.getenv(\"contraseña\")\n@app.route('/')\ndef home():",
         "detail": "back",
         "documentation": {}
     },
@@ -104,7 +130,7 @@
         "kind": 5,
         "importPath": "back",
         "description": "back",
-        "peekOfCode": "app.secret_key = 'patri'\napp.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://ukc3pikk3fkkzvyi:E4W9DX4ZzG1t5NtFUIs7@beey6ofiqbnpaclvmjhy-mysql.services.clever-cloud.com:3306/beey6ofiqbnpaclvmjhy'\napp.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False\ndb = SQLAlchemy(app)\n@app.route('/')\ndef home():\n        return render_template('home.html')\n@app.route('/perfil')\ndef perfil():",
+        "peekOfCode": "app.secret_key = 'patri'\napp.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://ukc3pikk3fkkzvyi:E4W9DX4ZzG1t5NtFUIs7@beey6ofiqbnpaclvmjhy-mysql.services.clever-cloud.com:3306/beey6ofiqbnpaclvmjhy'\napp.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False\ndb = SQLAlchemy(app)\nload_dotenv()\nusuario = os.getenv(\"usuario\")\ncontraseña = os.getenv(\"contraseña\")\n@app.route('/')\ndef home():\n language_data = {",
         "detail": "back",
         "documentation": {}
     },
@@ -113,7 +139,7 @@
         "kind": 5,
         "importPath": "back",
         "description": "back",
-        "peekOfCode": "app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://ukc3pikk3fkkzvyi:E4W9DX4ZzG1t5NtFUIs7@beey6ofiqbnpaclvmjhy-mysql.services.clever-cloud.com:3306/beey6ofiqbnpaclvmjhy'\napp.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False\ndb = SQLAlchemy(app)\n@app.route('/')\ndef home():\n        return render_template('home.html')\n@app.route('/perfil')\ndef perfil():\n        return render_template('perfil.html')",
+        "peekOfCode": "app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://ukc3pikk3fkkzvyi:E4W9DX4ZzG1t5NtFUIs7@beey6ofiqbnpaclvmjhy-mysql.services.clever-cloud.com:3306/beey6ofiqbnpaclvmjhy'\napp.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False\ndb = SQLAlchemy(app)\nload_dotenv()\nusuario = os.getenv(\"usuario\")\ncontraseña = os.getenv(\"contraseña\")\n@app.route('/')\ndef home():\n language_data = {\n        'labels': ['Python', 'JavaScript', 'HTML', 'CSS', 'Otros'],",
         "detail": "back",
         "documentation": {}
     },
@@ -122,7 +148,7 @@
         "kind": 5,
         "importPath": "back",
         "description": "back",
-        "peekOfCode": "app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False\ndb = SQLAlchemy(app)\n@app.route('/')\ndef home():\n        return render_template('home.html')\n@app.route('/perfil')\ndef perfil():\n        return render_template('perfil.html')\n@app.route('/log_in')",
+        "peekOfCode": "app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False\ndb = SQLAlchemy(app)\nload_dotenv()\nusuario = os.getenv(\"usuario\")\ncontraseña = os.getenv(\"contraseña\")\n@app.route('/')\ndef home():\n language_data = {\n        'labels': ['Python', 'JavaScript', 'HTML', 'CSS', 'Otros'],\n        'percentages': [40, 30, 15, 10, 5]  # Cambia estos valores según tus necesidades",
         "detail": "back",
         "documentation": {}
     },
@@ -131,7 +157,25 @@
         "kind": 5,
         "importPath": "back",
         "description": "back",
-        "peekOfCode": "db = SQLAlchemy(app)\n@app.route('/')\ndef home():\n        return render_template('home.html')\n@app.route('/perfil')\ndef perfil():\n        return render_template('perfil.html')\n@app.route('/log_in')\ndef log_in():",
+        "peekOfCode": "db = SQLAlchemy(app)\nload_dotenv()\nusuario = os.getenv(\"usuario\")\ncontraseña = os.getenv(\"contraseña\")\n@app.route('/')\ndef home():\n language_data = {\n        'labels': ['Python', 'JavaScript', 'HTML', 'CSS', 'Otros'],\n        'percentages': [40, 30, 15, 10, 5]  # Cambia estos valores según tus necesidades\n    }",
+        "detail": "back",
+        "documentation": {}
+    },
+    {
+        "label": "usuario",
+        "kind": 5,
+        "importPath": "back",
+        "description": "back",
+        "peekOfCode": "usuario = os.getenv(\"usuario\")\ncontraseña = os.getenv(\"contraseña\")\n@app.route('/')\ndef home():\n language_data = {\n        'labels': ['Python', 'JavaScript', 'HTML', 'CSS', 'Otros'],\n        'percentages': [40, 30, 15, 10, 5]  # Cambia estos valores según tus necesidades\n    }\n fig = go.Figure(data=[go.Pie(labels=language_data['labels'], values=language_data['percentages'], hole=0.3)])\n    # Convertir el gráfico a HTML",
+        "detail": "back",
+        "documentation": {}
+    },
+    {
+        "label": "contraseña",
+        "kind": 5,
+        "importPath": "back",
+        "description": "back",
+        "peekOfCode": "contraseña = os.getenv(\"contraseña\")\n@app.route('/')\ndef home():\n language_data = {\n        'labels': ['Python', 'JavaScript', 'HTML', 'CSS', 'Otros'],\n        'percentages': [40, 30, 15, 10, 5]  # Cambia estos valores según tus necesidades\n    }\n fig = go.Figure(data=[go.Pie(labels=language_data['labels'], values=language_data['percentages'], hole=0.3)])\n    # Convertir el gráfico a HTML\n graph_html = fig.to_html(full_html=False)",
         "detail": "back",
         "documentation": {}
     }

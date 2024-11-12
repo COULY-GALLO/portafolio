@@ -1,17 +1,26 @@
-{% extends "base.html" %}
-
-{% block title %}Portafolio{% endblock %}
-
-{% block body %}
-    <!-- Título principal centrado -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio</title>
+</head>
+<body>
     <div class="text-center my-4">
         <h1>Título</h1>
     </div>
 
-    <!-- Contenido principal con estilo -->
     <div class="container">
         <div class="content bg-light p-4 rounded shadow">
-            <p>Este es el contenido principal del portafolio. Puedes insertar aquí cualquier texto o información relevante que desees mostrar.</p>
+            <p>patricio</p>
+
+           
+            <div class="my-4">
+                <h3>Lenguajes Usados</h3>
+                <!-- Incluir el gráfico de Plotly -->
+                <div>{{ graph_html | safe }}</div>
+            </div>
         </div>
     </div>
-{% endblock %}
+</body>
+</html>
