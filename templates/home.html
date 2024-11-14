@@ -1,41 +1,116 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio - Brittany Chiang</title>
+    <style>
+        /* Fondo oscuro de pantalla completa */
+        body {
+            background-color: #0a192f; /* Azul oscuro */
+            color: #ccd6f6; /* Color de texto suave */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            min-height: 100vh;
+        }
 
-{% block title %}Portafolio{% endblock %}
+        h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #ffffff; /* Color de texto blanco */
+            margin-bottom: 0.5rem;
+        }
 
-{% block body %}
+        h2 {
+            font-size: 2rem;
+            font-weight: 400;
+            color: #a8b2d1; /* Color gris claro para el subtítulo */
+            margin-bottom: 1rem;
+        }
 
-    <!-- Barra lateral de navegación -->
-    <div class="d-flex">
-        <nav class="navbar navbar-dark bg-dark flex-column p-3" style="min-width: 200px; height: 100vh;">
-            <a href="/perfil" class="navbar-brand">
-                <img src="{{ url_for('static', filename='images/pfp.png') }}" style="width:40px; height:40px;">
-                <span class="text-light d-block">Patrick</span>
-                <small class="text-muted">desarrollador web(backend)</small>
-            </a>
-            <ul class="nav flex-column mt-4">
-                <li class="nav-item mb-2">
-                    <a class="nav-link text-light" href="#">sobre mi</a>
-                </li>
-                <li class="nav-item mb-2">
-                    <a class="nav-link text-light" href="#">lenguajes</a>
-                </li>
-                <li class="nav-item mb-2">
-                    <a class="nav-link text-light" href="#">experiencia laboral</a>
-                </li>
-                <li class="nav-item mb-2">
-                    <a class="nav-link text-light" href="#">contacto</a>
-                </li>
-            </ul>
-        </nav>
+        p {
+            font-size: 1.1rem;
+            color: #a8b2d1;
+            max-width: 600px;
+            margin: 0 auto 1.5rem;
+            text-align: center;
+        }
 
-        <!-- Contenido principal -->
-        <main class="flex-grow-1 bg-dark text-light d-flex align-items-center justify-content-center">
-            <div class="text-center">
-                <h1>HOLA!, soy <span style="color: #00f;">PATRICK</span>,<br> web dev</h1>
-                <p>back end dev / analista de base de datos</p>
-                <a href="#" class="btn btn-outline-light mt-3">Contact me!</a>
-            </div>
-        </main>
+        .btn-custom {
+            border: 1px solid #64ffda; /* Borde verde */
+            color: #64ffda; /* Texto verde */
+            padding: 10px 20px;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-custom:hover {
+            background-color: rgba(100, 255, 218, 0.1); /* Fondo semi-transparente en hover */
+            color: #64ffda;
+        }
+
+        /* Centrado de contenido */
+        .content {
+            text-align: center;
+            max-width: 800px;
+            margin-bottom: 2rem;
+        }
+
+        /* Estilos para el cuadro de lenguajes */
+        .languages-box {
+            background-color: #112240; /* Color de fondo del cuadro */
+            padding: 20px;
+            border-radius: 8px;
+            color: #ccd6f6;
+            max-width: 600px;
+            text-align: center;
+            margin-top: 2rem; /* Espacio arriba del cuadro */
+        }
+
+        .languages-box h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .languages-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .languages-box li {
+            font-size: 1.1rem;
+            color: #a8b2d1;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1></h1>
+        <h2></h2>
+        <p></p>
+        <a href="#" class="btn-custom"></a>
     </div>
-
-{% endblock %}
+    
+    <!-- Cuadro de lenguajes -->
+    <div class="languages-box">
+        <h3></h3>
+        <ul>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>Python</li>
+            <li>SQL</li>
+            <li>PHP</li>
+            <li>Java</li>
+            <!-- Agrega más lenguajes según los que manejes -->
+        </ul>
+    </div>
+</body>
+</html>
