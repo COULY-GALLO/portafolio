@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
     <title>Portafolio </title>
     <style>
         /* Fondo oscuro de pantalla completa */
@@ -17,21 +19,21 @@
             flex-direction: column;
             min-height: 100vh;
         }
-
+    
         h1 {
             font-size: 3rem;
             font-weight: bold;
             color: #ffffff; /* Color de texto blanco */
             margin-bottom: 0.5rem;
         }
-
+    
         h2 {
             font-size: 2rem;
             font-weight: 400;
             color: #a8b2d1; /* Color gris claro para el subtítulo */
             margin-bottom: 1rem;
         }
-
+    
         p {
             font-size: 1.1rem;
             color: #a8b2d1;
@@ -39,7 +41,7 @@
             margin: 0 auto 1.5rem;
             text-align: center;
         }
-
+    
         .btn-custom {
             border: 1px solid #64ffda; /* Borde verde */
             color: #64ffda; /* Texto verde */
@@ -48,19 +50,19 @@
             text-decoration: none;
             display: inline-block;
         }
-
+    
         .btn-custom:hover {
             background-color: rgba(100, 255, 218, 0.1); /* Fondo semi-transparente en hover */
             color: #64ffda;
         }
-
+    
         /* Centrado de contenido */
         .content {
             text-align: center;
             max-width: 800px;
             margin-bottom: 2rem;
         }
-
+    
         /* Estilos para el cuadro de lenguajes */
         .languages-box {
             background-color: #112240; /* Color de fondo del cuadro */
@@ -71,45 +73,101 @@
             text-align: center;
             margin-top: 2rem; /* Espacio arriba del cuadro */
         }
-
+    
         .languages-box h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
         }
+    
+        /* Círculo giratorio */
+        .circle {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    border-radius: 50%;
+    animation: rotate 10s linear infinite;
+    transform-origin: center center; 
+}
 
-        .languages-box ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+.circle .item {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    transform-origin: 150px 150px; 
+    color: #f8f1fa; 
+}
 
-        .languages-box li {
-            font-size: 1.1rem;
-            color: #a8b2d1;
-            margin: 5px 0;
-        }
+.circle .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+
+.circle .item:nth-child(1) { transform: rotate(0deg) translateX(120px);;  }
+.circle .item:nth-child(2) { transform: rotate(51.43deg) translateX(120px); }
+.circle .item:nth-child(3) { transform: rotate(102.86deg) translateX(120px); color: #fffb10}
+.circle .item:nth-child(4) { transform: rotate(154.29deg) translateX(120px); }
+.circle .item:nth-child(5) { transform: rotate(205.71deg) translateX(120px); color: #5c85db}
+.circle .item:nth-child(6) { transform: rotate(257.14deg) translateX(120px); }
+.circle .item:nth-child(7) { transform: rotate(308.57deg) translateX(120px); }
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+
     </style>
+    
 </head>
 <body>
     <div class="content">
-        <h1></h1>
-        <h2></h2>
-        <p></p>
-        <a href="#" class="btn-custom"></a>
+        <h1>Hola, soy Patricio</h1>
+        <h2>dackend/database enjoyer</h2>
+        <p>bilingual nigga </p>
+        <a href="#" class="btn-custom">socials</a>
     </div>
     
     <!-- Cuadro de lenguajes -->
     <div class="languages-box">
-        <h3></h3>
-        <ul>
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>JavaScript</li>
-            <li>Python</li>
-            <li>SQL</li>
-            <li>PHP</li>
-            <li>Java</li>
-        </ul>
+        <h3>Tecnologías</h3>
+        <div class="circle">
+            <div class="item">
+                <i class="fab fa-html5" title="HTML"></i>
+            </div>
+            <div class="item">
+                <i class="fab fa-css3-alt" title="CSS"></i>
+            </div>
+            <div class="item">
+                <i class="fab fa-js-square" title="JavaScript"></i>
+            </div>
+            <div class="item">
+                <i class="fab fa-python" title="Python"></i>
+            </div>
+            <div class="item">
+                <i class="fas fa-database" title="SQL"></i>
+            </div>
+            <div class="item">
+                <i class="fab fa-php" title="PHP"></i>
+            </div>
+            <div class="item">
+                <i class="fab fa-java" title="Java"></i>
+            </div>
+            
+        </div>
     </div>
 </body>
 </html>
