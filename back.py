@@ -1,5 +1,5 @@
 
-#from dotenv import load_dotenv
+from dotenv import load_dotenv
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_sqlalchemy import SQLAlchemy
 import os
@@ -12,7 +12,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://ukc3pikk3fkkzvyi:E4W9DX4ZzG1t5N
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
-#load_dotenv()
+load_dotenv()
 usuario = os.getenv("usuario")
 contraseña = os.getenv("contraseña")
 
@@ -20,10 +20,8 @@ contraseña = os.getenv("contraseña")
 @app.route('/')
 def home():
   
-    
+    return render_template('home.html')
 
- return render_template('home.html')
-    
 
 
 
