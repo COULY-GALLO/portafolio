@@ -1,37 +1,39 @@
-
-from dotenv import load_dotenv
+import json
 from flask import Flask, render_template, request, redirect, url_for, flash, session
-from flask_sqlalchemy import SQLAlchemy
+from dotenv import load_dotenv
 import os
+
+
+load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = 'patri'
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://ukc3pikk3fkkzvyi:E4W9DX4ZzG1t5NtFUIs7@beey6ofiqbnpaclvmjhy-mysql.services.clever-cloud.com:3306/beey6ofiqbnpaclvmjhy'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+usuario = os.getenv("USUARIO")
+contraseña = os.getenv("CONTRASEÑA")
 
-db = SQLAlchemy(app)
-load_dotenv()
-usuario = os.getenv("usuario")
-contraseña = os.getenv("contraseña")
+def load_experiences(filepath='experiencias.json'):
+    try:
+        with open(filepath, 'r') as file:
+            return json.load(file)
+    except FileNotFoundError:
+        return []
+
+
+def save_experiences(experiencias, filepath='experiencias.json'):
+    with open(filepath, 'w') as file:
+        json.dump(experiencias, file)
 
 
 @app.route('/')
 def home():
-  
     return render_template('home.html')
-
-
 
 
 @app.route('/perfil')
 def perfil():
-    experiencias = [
-        "Desarrollador Backend - Empresa X (2022-2023)",
-        "Ingeniero de Bases de Datos - Empresa Y (2021-2022)",
-        "Desarrollador Fullstack - Freelance (2020-2021)"
-    ]
+    experiencias = load_experiences()
     return render_template('perfil.html', experiencias=experiencias)
 
 
@@ -41,12 +43,19 @@ def editar_experiencia():
         flash('Debe iniciar sesión para editar.')
         return redirect(url_for('log_in'))
 
-    nueva_experiencia = request.form['experiencia']
-    flash(f'Experiencia actualizada: {nueva_experiencia}')
-    # Aquí podrías guardar `nueva_experiencia` en tu base de datos si fuera necesario.
+    nueva_experiencia = request.form.get('experiencia')
+    index = int(request.form.get('index'))
+
+   
+    experiencias = load_experiences()
+    if 0 <= index < len(experiencias):
+        experiencias[index] = nueva_experiencia
+        save_experiences(experiencias)
+        flash('Experiencia actualizada correctamente.')
+    else:
+        flash('Índice inválido.')
+
     return redirect(url_for('perfil'))
-
-
 
 
 @app.route('/log_in', methods=['GET', 'POST'])
@@ -54,20 +63,23 @@ def log_in():
     if request.method == 'POST':
         username = request.form['usuario']
         password = request.form['password']
-        
-        USERNAME = usuario
-        PASSWORD = contraseña
 
-        if username == USERNAME and password == PASSWORD:
-            session['username'] = username
+        if username == usuario and password == contraseña:
+            session['username'] = username  
             flash('Inicio de sesión exitoso')
-            return redirect(url_for('perfil'))
+            return redirect(url_for('home')) 
         else:
             flash('Error en usuario o contraseña')
-            return redirect(url_for('log_in'))
+            return redirect(url_for('log_in')) 
 
     return render_template('log_in.html')
 
+
+@app.route('/log_out')
+def log_out():
+    session.pop('username', None) 
+    flash('Sesión cerrada.')
+    return redirect(url_for('home'))  
 
 
 if __name__ == '__main__':

@@ -65,8 +65,11 @@
     color: #ccd6f6; /* Color de texto */
     text-align: center; /* Alineación del texto */
     box-shadow: 0 4px 10px rgba(133, 40, 17, 0.3); 
-    border-radius: 16px; /* Bordes redondeados */
+    border-radius: 16px; 
+    
+    margin-bottom: 50px; 
 }
+
 
 .experiences .section {
     margin-bottom: 20px; /* Espacio entre secciones */
@@ -101,13 +104,13 @@
 
 
 
-        /* Contenedor de tecnologías y lenguajes */
+        
         .technologies-container {
             display: flex;
             justify-content: center;
             align-items: flex-start;
-            gap: 20px; /* Espaciado entre las secciones */
-            flex-wrap: wrap; /* Acomoda en varias filas si es necesario */
+            gap: 60px;
+            flex-wrap: wrap; 
         }
 
         /* Cuadro general */
@@ -169,7 +172,7 @@
             color: rgba(235, 57, 3, 0.3);
         }
 
-        /* Animación */
+      
         @keyframes rotate {
             from {
                 transform: rotate(0deg);
@@ -225,7 +228,7 @@
 }
     </style>
     
-    <a href="log_in.html" class="log_in_btn">Log in(solo para devs)</a>
+    <a href="log_in" class="log_in_btn">Log in(solo para devs)</a>
 </head>
 <body>
     <div class="content">
@@ -237,37 +240,29 @@
 
     <div class="experiences">
         <div class="section">
-            <h3>Acerca de mí</h3>
-            <p>Soy un apasionado desarrollador backend con experiencia en bases de datos y tecnologías web. Mi enfoque está en crear sistemas eficientes y escalables.</p>
-        </div>
-        <div class="section">
             <h3>Experiencias</h3>
             <ul>
                 {% if session.get('username') %}
-                    <!-- Solo mostrar el formulario si el usuario está autenticado -->
+                    
                     {% for experiencia in experiencias %}
-                    <li>
-                        <form method="post" action="/editar_experiencia">
-                            <input type="text" name="experiencia" value="{{ experiencia }}" class="form-control" required>
-                            <button type="submit" class="btn btn-sm btn-primary mt-1">Guardar</button>
-                        </form>
-                    </li>
+                        <li>
+                            <form method="post" action="/editar_experiencia">
+                                <input type="hidden" name="index" value="{{ loop.index0 }}">
+                                <input type="text" name="experiencia" value="{{ experiencia }}" class="form-control" required>
+                                <button type="submit" class="btn btn-sm btn-primary mt-1">Guardar</button>
+                            </form>
+                        </li>
                     {% endfor %}
                 {% else %}
-                    <!-- Mostrar experiencias estáticas si no hay sesión -->
+                    
                     {% for experiencia in experiencias %}
-                    <li>{{ experiencia }}</li>
+                        <li>{{ experiencia }}</li>
                     {% endfor %}
                 {% endif %}
             </ul>
-    
-            <h4>Educación</h4>
-            <ul>
-                <li><strong>Desarrollador Backend</strong> - Empresa X (2022-2023)</li>
-                <li><strong>Ingeniero de Bases de Datos</strong> - Empresa Y (2021-2022)</li>
-            </ul>
         </div>
     </div>
+    
     
 
     <!-- Tecnologías y lenguajes -->
