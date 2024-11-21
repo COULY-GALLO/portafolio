@@ -27,29 +27,47 @@ def home():
 
 @app.route('/perfil')
 def perfil():
-    
-        return render_template('perfil.html')
+    experiencias = [
+        "Desarrollador Backend - Empresa X (2022-2023)",
+        "Ingeniero de Bases de Datos - Empresa Y (2021-2022)",
+        "Desarrollador Fullstack - Freelance (2020-2021)"
+    ]
+    return render_template('perfil.html', experiencias=experiencias)
 
-@app.route('/log_in')
+
+@app.route('/editar_experiencia', methods=['POST'])
+def editar_experiencia():
+    if 'username' not in session:
+        flash('Debe iniciar sesión para editar.')
+        return redirect(url_for('log_in'))
+
+    nueva_experiencia = request.form['experiencia']
+    flash(f'Experiencia actualizada: {nueva_experiencia}')
+    # Aquí podrías guardar `nueva_experiencia` en tu base de datos si fuera necesario.
+    return redirect(url_for('perfil'))
+
+
+
+
+@app.route('/log_in', methods=['GET', 'POST'])
 def log_in():
-     if request.method == 'POST':
-        username = request.form['username']
+    if request.method == 'POST':
+        username = request.form['usuario']
         password = request.form['password']
         
-        USERNAME=usuario
-        PASSWORD=contraseña
-      
-        
-        if username == USERNAME and password == PASSWORD:
-            session['username'] = username  
-            flash('Inicio de sesión')
-            return redirect(url_for(''))
-        else:
-            flash('error')
-            return redirect(url_for('log_in'))
-   
+        USERNAME = usuario
+        PASSWORD = contraseña
 
-     return render_template('log_in.html') 
+        if username == USERNAME and password == PASSWORD:
+            session['username'] = username
+            flash('Inicio de sesión exitoso')
+            return redirect(url_for('perfil'))
+        else:
+            flash('Error en usuario o contraseña')
+            return redirect(url_for('log_in'))
+
+    return render_template('log_in.html')
+
 
 
 if __name__ == '__main__':
