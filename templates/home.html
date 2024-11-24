@@ -45,7 +45,27 @@
         }
         .log_in_btn:hover {
             background-color: rgba(100, 255, 218, 0.1);
+
+
         }
+
+        .log_out_btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff4b5c;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.log_out_btn:hover {
+    background-color: #ff1e36;
+}
+
+
+
         .btn-custom {
             border: 1px solid #64ffda;
             color: #64ffda;
@@ -58,17 +78,17 @@
             background-color: rgba(100, 255, 218, 0.1);
         }
 
-.experiences {
+        .experiences {
     width: 60%; 
     background-color: #112240;  
-    padding: 40px 20px; /* Espaciado interno */
-    color: #ccd6f6; /* Color de texto */
-    text-align: center; /* Alineación del texto */
+    padding: 40px 20px; 
+    color: #ccd6f6;
+    text-align: center;
     box-shadow: 0 4px 10px rgba(133, 40, 17, 0.3); 
     border-radius: 16px; 
-    
     margin-bottom: 50px; 
 }
+
 
 
 .experiences .section {
@@ -229,6 +249,8 @@
     </style>
     
     <a href="log_in" class="log_in_btn">Log in(solo para devs)</a>
+    <a href="logout" class="log_out_btn">Log out</a>
+
 </head>
 <body>
     <div class="content">
@@ -239,29 +261,34 @@
     </div>
 
     <div class="experiences">
-        <div class="section">
-            <h3>Experiencias</h3>
-            <ul>
-                {% if session.get('username') %}
-                    
-                    {% for experiencia in experiencias %}
-                        <li>
-                            <form method="post" action="/editar_experiencia">
-                                <input type="hidden" name="index" value="{{ loop.index0 }}">
-                                <input type="text" name="experiencia" value="{{ experiencia }}" class="form-control" required>
-                                <button type="submit" class="btn btn-sm btn-primary mt-1">Guardar</button>
-                            </form>
-                        </li>
-                    {% endfor %}
-                {% else %}
-                    
-                    {% for experiencia in experiencias %}
-                        <li>{{ experiencia }}</li>
-                    {% endfor %}
-                {% endif %}
-            </ul>
+        {% for experiencia in experiencias %}
+        <div class="experience-item">
+            {% if user_logged_in %}
+                <form method="POST" action="/editar_experiencia">
+                    <input type="hidden" name="id" value="{{ experiencia.id }}">
+                    <label for="experiencia-{{ experiencia.id }}">Editar experiencia:</label>
+                    <input type="text" id="experiencia-{{ experiencia.id }}" name="experiencia" value="{{ experiencia.descripcion }}" required>
+                    <button type="submit">Guardar</button>
+                </form>
+                <form method="POST" action="/eliminar_experiencia" onsubmit="return confirm('¿Estás seguro?')">
+                    <input type="hidden" name="id" value="{{ experiencia.id }}">
+                    <button type="submit">Eliminar</button>
+                </form>
+            {% else %}
+                <p>{{ experiencia.descripcion }}</p>
+            {% endif %}
         </div>
+        {% endfor %}
+    
+        {% if user_logged_in %}
+        <form method="POST" action="/añadir_experiencia">
+            <label for="nueva-experiencia">Nueva experiencia:</label>
+            <input type="text" id="nueva-experiencia" name="descripcion" required>
+            <button type="submit">Añadir</button>
+        </form>
+        {% endif %}
     </div>
+    
     
     
 

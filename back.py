@@ -1,85 +1,88 @@
-import json
-from flask import Flask, render_template, request, redirect, url_for, flash, session
-from dotenv import load_dotenv
-import os
-
-
-load_dotenv()
+from flask import Flask, render_template, request, redirect, session, jsonify
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.exc import OperationalError
 
 app = Flask(__name__)
 app.secret_key = 'patri'
 
+    # Configuración de la base de datos
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://upn5pvkmedamkc78:0sIhj9xMhaMKMr0rqAA9@b1cc4uulzyfxlt3zzosj-mysql.services.clever-cloud.com:3306/b1cc4uulzyfxlt3zzosj'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-usuario = os.getenv("USUARIO")
-contraseña = os.getenv("CONTRASEÑA")
+db = SQLAlchemy(app)
 
-def load_experiences(filepath='experiencias.json'):
-    try:
-        with open(filepath, 'r') as file:
-            return json.load(file)
-    except FileNotFoundError:
-        return []
+class Experiencia(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    descripcion = db.Column(db.String(500), nullable=False)
 
+# Crear la base de datos y la tabla
+with app.app_context():
+    db.create_all()
 
-def save_experiences(experiencias, filepath='experiencias.json'):
-    with open(filepath, 'w') as file:
-        json.dump(experiencias, file)
-
-
-@app.route('/')
+@app.route("/")
 def home():
-    return render_template('home.html')
+    experiencias = Experiencia.query.all()
+    user_logged_in = 'user' in session  # Verificar si hay sesión iniciada
+    return render_template("home.html", experiencias=experiencias, user_logged_in=user_logged_in)
 
-
-@app.route('/perfil')
-def perfil():
-    experiencias = load_experiences()
-    return render_template('perfil.html', experiencias=experiencias)
-
-
-@app.route('/editar_experiencia', methods=['POST'])
-def editar_experiencia():
-    if 'username' not in session:
-        flash('Debe iniciar sesión para editar.')
-        return redirect(url_for('log_in'))
-
-    nueva_experiencia = request.form.get('experiencia')
-    index = int(request.form.get('index'))
-
-   
-    experiencias = load_experiences()
-    if 0 <= index < len(experiencias):
-        experiencias[index] = nueva_experiencia
-        save_experiences(experiencias)
-        flash('Experiencia actualizada correctamente.')
-    else:
-        flash('Índice inválido.')
-
-    return redirect(url_for('perfil'))
-
-
-@app.route('/log_in', methods=['GET', 'POST'])
+@app.route("/log_in", methods=["GET", "POST"])
 def log_in():
-    if request.method == 'POST':
-        username = request.form['usuario']
-        password = request.form['password']
-
-        if username == usuario and password == contraseña:
-            session['username'] = username  
-            flash('Inicio de sesión exitoso')
-            return redirect(url_for('home')) 
+    if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
+        if username == "a" and password == "a": 
+            session['user'] = username
+            return redirect("/")
         else:
-            flash('Error en usuario o contraseña')
-            return redirect(url_for('log_in')) 
+            return "Credenciales inválidas", 401
+    return render_template("log_in.html")
 
-    return render_template('log_in.html')
+@app.route('/logout')
+def logout():
+    session.clear()  
+    return render_template('log_out.html')  
 
 
-@app.route('/log_out')
-def log_out():
-    session.pop('username', None) 
-    flash('Sesión cerrada.')
-    return redirect(url_for('home'))  
+@app.route("/añadir_experiencia", methods=["POST"])
+def añadir_experiencia():
+    if 'user' not in session:
+        return "No autorizado", 403
+    descripcion = request.form.get("descripcion")
+    if descripcion:
+        nueva_experiencia = Experiencia(descripcion=descripcion)
+        db.session.add(nueva_experiencia)
+        db.session.commit()
+        return redirect("/")
+    return "Error al añadir experiencia", 400
+
+@app.route("/editar_experiencia", methods=["POST"])
+def editar_experiencia():
+    if 'user' not in session:
+        return "No autorizado", 403
+    experiencia_id = request.form.get("id")
+    descripcion = request.form.get("experiencia")
+    experiencia = Experiencia.query.get(experiencia_id)
+    if experiencia and descripcion:
+        experiencia.descripcion = descripcion
+        db.session.commit()
+        return redirect("/")
+    return "Error al editar experiencia", 400
+
+@app.route("/eliminar_experiencia", methods=["POST"])
+def eliminar_experiencia():
+    if 'user' not in session:
+        return "No autorizado", 403
+    experiencia_id = request.form.get("id")
+    experiencia = Experiencia.query.get(experiencia_id)
+    if experiencia:
+        db.session.delete(experiencia)
+        db.session.commit()
+        return jsonify({"success": True})
+    return jsonify({"success": False}), 400
+
+
+
+
 
 
 if __name__ == '__main__':
