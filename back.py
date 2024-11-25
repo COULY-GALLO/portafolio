@@ -6,7 +6,7 @@ app = Flask(__name__)
 app.secret_key = 'patri'
 
     # Configuración de la base de datos
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://upn5pvkmedamkc78:0sIhj9xMhaMKMr0rqAA9@b1cc4uulzyfxlt3zzosj-mysql.services.clever-cloud.com:3306/b1cc4uulzyfxlt3zzosj'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://upn5pvkmedamkc78:0sIhj9xMhaMKMr0rqAA9@b1cc4uulzyfxlt3zzosj-mysql.services.clever-cloud.com:3306/b1cc4uulzyfxlt3zzosj'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)

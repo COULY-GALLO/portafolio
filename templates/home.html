@@ -52,8 +52,8 @@
         .log_out_btn {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #ff4b5c;
-    color: white;
+    background-color: #0a192f;
+    color: #0a192f;
     text-decoration: none;
     border-radius: 5px;
     font-size: 16px;
@@ -220,32 +220,59 @@
 
 
         .projects {
-    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 40px; /* Separación superior */
+    margin-bottom: 40px; /* Separación inferior */
+    padding: 20px; /* Espaciado interno opcional */
     text-align: center;
+    border: 1px solid #ccc; /* Línea opcional para visualización */
+    border-radius: 10px; /* Bordes redondeados opcionales */
 }
 
 .projects .project {
-    display: inline-block;
-    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 140px; /* Espacio para cada elemento */
     text-align: center;
 }
 
 .projects img {
-    width: 150px;
-    height: auto;
-    border-radius: 10px;
-    margin-bottom: 10px;
+    width: 120px; /* Tamaño fijo de las imágenes */
+    height: 120px; /* Asegura que todas tengan las mismas dimensiones */
+    object-fit: cover; /* Recorta y ajusta la imagen para llenar el espacio */
+    border-radius: 10px; /* Opcional: bordes redondeados */
+    transition: transform 0.3s ease; /* Animación para hover */
+    margin-bottom: 10px; /* Espacio entre la imagen y el texto */
+}
+
+.projects img:hover {
+    transform: scale(1.1); /* Efecto de zoom suave al pasar el mouse */
 }
 
 .projects a {
-    display: block;
     color: #64ffda;
     text-decoration: none;
+    font-size: 14px;
 }
 
 .projects a:hover {
     text-decoration: underline;
 }
+
+
+img {
+    width: 80px; /* Ancho reducido */
+    height: 80px; /* Altura reducida */
+    border-radius: 50%; /* Hace que las imágenes sean redondas */
+    object-fit: cover; /* Asegura que la imagen se ajuste al espacio sin deformarse */
+    border: 2px solid #ccc; /* Borde opcional para destacar */
+    transition: transform 0.3s ease; /* Efecto de zoom suave al pasar el mouse */
+}
+
     </style>
     
     <a href="log_in" class="log_in_btn">Log in(solo para devs)</a>
@@ -254,11 +281,25 @@
 </head>
 <body>
     <div class="content">
+        <img src="static/images/perro.gif" alt="Perfil" />
+
         <h1>Hola, soy Patricio</h1>
         <h2>Backend/Database Enjoyer</h2>
         <p>Bilingual developer</p>
         <a href="https://www.canva.com" class="btn-custom">CV</a>
     </div>
+
+    <div class="about_me">
+       <h1>
+
+       </h1>
+
+
+
+    </div>
+
+
+
 
     <div class="experiences">
         {% for experiencia in experiencias %}
@@ -339,19 +380,24 @@
                 </div>
                 
             </div>
-            <h4>Proyectos de programacion</h4>
-            <div class="project">
-                <img src="ruta/imagen1.jpg" alt="app_cobro" />
-                <a href="https://github.com/Lautarocuesta/App-de-cobro" target="_blank">applicacion de prueba para probar la api mercado pago</a>
-            </div>
-            <div class="project">
-                <img src="ruta/imagen2.jpg" alt="Proyecto 2" />
-                <a href="https://github.com/usuario/proyecto2" target="_blank">Proyecto API coc</a>
-            </div>
-            <div class="project">
-                <img src="ruta/imagen3.jpg" alt="Proyecto 3" />
-                <a href="https://github.com/usuario/proyecto3" target="_blank">Aula virtual</a>
-            </div>
+            <h4>Proyectos de programación</h4>
+<div class="projects">
+    <div class="project">
+        <img src="static/images/apicoc.jpg" alt="APIcoc" />
+        <a href="https://github.com/Lautarocuesta/App-de-cobro" target="_blank">API Clash of Clans</a>
+    </div>
+    <div class="project">
+        <img src="static/images/app_cobro.JPG" alt="app cobro" />
+        <a href="https://github.com/Lautarocuesta/App-de-cobro" target="_blank">App de cobro (API de mercado pago)</a>
+    </div>
+    <div class="project">
+        <img src="ruta/imagen3.jpg" alt="Aula vir" />
+        <a href="https://github.com/Lautarocuesta/aulavir" target="_blank">Aula virtual (google classroom lookalike)</a>
+    </div>
+</div>
+ 
+</div>
+
         </div>
 
 
